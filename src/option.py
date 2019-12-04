@@ -50,7 +50,7 @@ parser.add_argument('--model', default='DNLN',
                     help='model name')
 parser.add_argument('--tensorboard', type=str, default='../tensorboard/DNLN',
                     help='tensorboard directory')
-parser.add_argument('--pre_train', type=str, default='',
+parser.add_argument('--pre_train', type=str, default='../experiment/pretrained_models/DNLN_x4.pt',
                     help='pre-trained model directory')
 parser.add_argument('--n_frames', type=int, default=7,
                     help='number of input frames')
