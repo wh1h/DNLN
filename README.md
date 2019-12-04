@@ -1,5 +1,5 @@
 # DNLN
-Deformable Non-local Network for Video Super-Resolution[[Slide](https://raw.githubusercontent.com/wh1h/ppt/master/Deformable%20Non-local%20Network%20for%20Video%20Super-Resolution.pptx)]
+Deformable Non-local Network for Video Super-Resolution  [[Slide](https://raw.githubusercontent.com/wh1h/ppt/master/Deformable%20Non-local%20Network%20for%20Video%20Super-Resolution.pptx)]
 
 ## Dependencies
 * Python 3.6
