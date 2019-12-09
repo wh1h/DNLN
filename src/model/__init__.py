@@ -34,7 +34,7 @@ class Model(nn.Module):
             resume=args.resume,
             cpu=args.cpu
         )
-        print(self.model, file=ckp.log_file)
+        #print(self.model, file=ckp.log_file)
 
     def forward(self, x, idx_scale):
         self.idx_scale = idx_scale
