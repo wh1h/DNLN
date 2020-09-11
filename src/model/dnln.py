@@ -112,15 +112,15 @@ class DNLN(nn.Module):
             conv(n_feats, args.n_colors, kernel_size)]
         self.tail = nn.Sequential(*modules_tail)
 
-    def align(self, flames_feature):
+    def align(self, frames_feature):
         feature = []
-        batch_size, num, ch, h, w = flames_feature.size()
-        ref_feature = flames_feature[:, num // 2, :, :, :].clone()
+        batch_size, num, ch, h, w = frames_feature.size()
+        ref_feature = frames_feature[:, num // 2, :, :, :].clone()
         for i in range(num):
             if i == num // 2:
                 feature.append(ref_feature)
                 continue
-            supp_feature = flames_feature[:, i, :, :, :].contiguous()
+            supp_feature = frames_feature[:, i, :, :, :].contiguous()
 
             for j in range(self.n_deform_conv):
                 fusion = self.act(self.fuse_layers[j](torch.cat((supp_feature, ref_feature), 1)))
@@ -135,11 +135,11 @@ class DNLN(nn.Module):
     def forward(self, x):
         batch_size, num, c, h, w = x.size()
 
-        flames = x.view(-1, c, h, w)
-        flames_feature = self.act(self.feat0(flames))
-        flames_feature = self.res_feat1(flames_feature)
-        flames_feature = flames_feature.view(batch_size, num, -1, h, w)
-        a_feature = self.align(flames_feature)
+        frames = x.view(-1, c, h, w)
+        frames_feature = self.act(self.feat0(frames))
+        frames_feature = self.res_feat1(frames_feature)
+        frames_feature = frames_feature.view(batch_size, num, -1, h, w)
+        a_feature = self.align(frames_feature)
 
         feature = torch.cat(a_feature, dim=1)
 
